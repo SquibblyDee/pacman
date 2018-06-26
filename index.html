@@ -87,7 +87,7 @@
                 [2,1,1,1,1,2,1,1,1,1,1,1,1,2,1,1,1,1,2],
                 [2,2,2,2,1,2,1,2,2,0,2,2,1,2,1,2,2,2,2],
                 [2,2,2,2,1,2,1,2,0,0,0,2,1,2,1,2,2,2,2],
-                [2,1,1,1,1,1,1,2,0,0,0,2,1,1,1,1,1,1,2],
+                [1,1,1,1,1,1,1,2,0,0,0,2,1,1,1,1,1,1,1],
                 [2,2,2,2,1,2,1,2,2,2,2,2,1,2,1,2,2,2,2],
                 [2,2,2,2,1,2,1,1,1,1,1,1,1,2,1,2,2,2,2],
                 [2,1,1,1,1,1,1,2,2,2,2,2,1,1,1,1,1,1,2],
@@ -149,11 +149,21 @@
             document.onkeydown = function(e){
                 if(e.keyCode == 37 && world[pacman.y][pacman.x-1] != 2){  //left
                     direction = "left";
-                    pacman.x--;
+                    if(pacman.x > 0){
+                        pacman.x--;
+                    }
+                    else{
+                        pacman.x = 18;
+                    }
                 }
                 else if(e.keyCode == 39 && world[pacman.y][pacman.x+1] != 2){  //right
                     direction = "right";
-                    pacman.x++;
+                    if(pacman.x < 18){
+                        pacman.x++;
+                    }
+                    else{
+                        pacman.x = 0;
+                    }
                 }
                 else if(e.keyCode == 38 && world[pacman.y-1][pacman.x] != 2){ //up
                     direction = "up";
@@ -163,6 +173,7 @@
                     direction = "down";
                     pacman.y++;
                 }
+                console.log("X "+pacman.x+ " Y "+pacman.y);
                 if(world[pacman.y][pacman.x]==1){
                     world[pacman.y][pacman.x]=0;
                     score+=10;
@@ -171,6 +182,7 @@
                 }
                 if(world[pacman.y][pacman.x]==3){
                     world[pacman.y][pacman.x]=0;
+                    // MAX SCORE ATM IS 1660
                     score+=50;
                     displayWorld();
                     displayScore();
