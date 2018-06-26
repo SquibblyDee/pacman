@@ -9,11 +9,6 @@
                 padding: 0px;
             }
             
-            div#world{
-                background-color: black;
-                display: inline-block;
-            }
-            
             div.row div{
                 display: inline-block;
                 width: 20px;
@@ -42,12 +37,7 @@
                 
             }
 
-            div.empty{
-                background-color: none;
-            }
-
             div#pacman{
-                background: url('img/pacman.gif');
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -80,7 +70,6 @@
         </div>
         
         <!-- List of Features to build -->
-        <!-- 3) Cherries -->
         <!-- 4) Directional Pacman -->
         <!-- 5) (OPTIONAL) Ghost appear + lives -->
         <!-- 6) (OPTIONAL) rng movement ghost -->
@@ -114,6 +103,8 @@
 
             var score=0;
 
+            var direction = "left";
+
             var pacman = {
                 x: 9,
                 y: 17
@@ -124,30 +115,32 @@
                 var output = '';
                 for(var i=0; i<world.length; i++){
                     output+= "\n<div class='row'>\n";
-                    console.log(output);
+                    // console.log(output);
                     for(var j=0; j<world[i].length; j++){
                         if(world[i][j] ==3)
                             output += "<div class='cherries'></div>";
-                            console.log(output);
+                            // console.log(output);
                         if(world[i][j] ==2)
                             output += "<div class='brick'></div>";
-                            console.log(output);
+                            // console.log(output);
                         if(world[i][j] ==1)
                             output += "<div class='coin'></div>";
-                            console.log(output);
+                            // console.log(output);
                         if(world[i][j] ==0)
                             output += "<div class='empty'></div>";
-                        console.log(output);
+                        // console.log(output);
                     }
                     output += "</div>";        
                 }
-                console.log(output);
+                // console.log(output);
                 document.getElementById("world").innerHTML = output;
             }
 
             function displayPacman(){
                 document.getElementById('pacman').style.top = pacman.y*20+"px";
                 document.getElementById('pacman').style.left = pacman.x*20+"px";
+                document.getElementById("pacman").style.backgroundImage = "url('img/pacman-"+direction+".gif')";
+                console.log("img/pacman_"+direction+".gif")
             }
 
             function displayScore(){
@@ -161,16 +154,20 @@
             
             // RAN ON KEYDOWN
             document.onkeydown = function(e){
-                if(e.keyCode == 37 && world[pacman.y][pacman.x-1] != 2){
+                if(e.keyCode == 37 && world[pacman.y][pacman.x-1] != 2){  //left
+                    direction = "left";
                     pacman.x--;
                 }
-                else if(e.keyCode == 39 && world[pacman.y][pacman.x+1] != 2){
+                else if(e.keyCode == 39 && world[pacman.y][pacman.x+1] != 2){  //right
+                    direction = "right";
                     pacman.x++;
                 }
-                else if(e.keyCode == 38 && world[pacman.y-1][pacman.x] != 2){
+                else if(e.keyCode == 38 && world[pacman.y-1][pacman.x] != 2){ //up
+                    direction = "up";
                     pacman.y--;
                 }
-                else if(e.keyCode == 40 && world[pacman.y+1][pacman.x] != 2){
+                else if(e.keyCode == 40 && world[pacman.y+1][pacman.x] != 2){ //down
+                    direction = "down";
                     pacman.y++;
                 }
                 
