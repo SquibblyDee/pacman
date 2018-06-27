@@ -87,15 +87,12 @@
             <div id="world"></div>
             <div id="pacman"></div>
             <div id="ghost"></div>
-            <!-- <div id="blueky"></div> -->
-            <!-- <div id="orangeky"></div> -->
+
             <div id="score"></div>
             <div id="lives"></div>
         </div>
         
         <!-- List of Features to build -->
-        <!-- 5) (OPTIONAL) Ghost appear 
-            lives -->
         <!-- 6) (OPTIONAL) rng movement ghost -->
         <!-- 7) (OPTIONAL) MP -->
         
@@ -166,7 +163,7 @@
                 document.getElementById('pacman').style.top = pacman.y*20+"px";
                 document.getElementById('pacman').style.left = pacman.x*20+"px";
                 document.getElementById("pacman").style.backgroundImage = "url('img/pacman-"+direction+".gif')";
-                // console.log("img/pacman_"+direction+".gif")
+                // console.log("img/pacman-"+direction+".gif")
             }
 
             function displayGhost(){
@@ -221,6 +218,30 @@
                 if(world[pacman.y] == world[ghost.y] && world[pacman.x] == world[ghost.x]){
                     lives--;
                     displayLives();
+                    if(lives ==0){
+                        world = [
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,2,2,2,2,0,2,2,2,0,2,0,0,0,2,0,2,2,2],
+                            [0,2,0,0,0,0,2,0,2,0,2,2,0,2,2,0,2,0,0],
+                            [0,2,0,0,0,0,2,0,2,0,2,0,2,0,2,0,2,0,0],
+                            [0,2,0,2,2,0,2,2,2,0,2,0,0,0,2,0,2,2,2],
+                            [0,2,0,0,2,0,2,0,2,0,2,0,0,0,2,0,2,0,0],
+                            [0,2,2,2,2,0,2,0,2,0,2,0,0,0,2,0,2,2,2],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,2,2,0,0,2,0,0,2,0,2,2,2,0,2,2,2,0],
+                            [0,2,0,0,2,0,2,0,0,2,0,2,0,0,0,2,0,0,2],
+                            [0,2,0,0,2,0,2,0,0,2,0,2,0,0,0,2,0,0,2],
+                            [0,2,0,0,2,0,2,0,0,2,0,2,2,2,0,2,2,2,0],
+                            [0,2,0,0,2,0,2,0,0,2,0,2,0,0,0,2,0,0,2],
+                            [0,0,2,2,0,0,0,2,2,0,0,2,2,2,0,2,0,0,2],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                        ];
+                    }
+                    displayWorld();
                 }
 
 
